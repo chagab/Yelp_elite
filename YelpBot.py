@@ -4,15 +4,47 @@ import random
 import requests
 from openai import OpenAI
 
+from fake_useragent import UserAgent
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    TimeoutException
+)
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+
 
 class YelpBot:
 
     _all = []
 
-    def __init__(self, yelp_api_key=None) -> None:
+    short_sleep_time = 3
+    long_sleep_time = 10
+    _current_location = ''
+
+    def __init__(
+        self,
+        yelp_api_key=None,
+        # TODO - add an argument for the openAI key
+        user_credentials_folder=None
+    ) -> None:
 
         if yelp_api_key is None:
-            with open('api_keys.json') as f:
+
+            if user_credentials_folder is None:
+                self.user_credentials_folder = 'user_credentials'
+            else:
+                self.user_credentials_folder = user_credentials_folder
+
+            api_key_path = os.path.join(
+                self.user_credentials_folder,
+                'api_keys.json'
+            )
+
+            with open(api_key_path) as f:
                 keys = json.load(f)
                 yelp_api_key = keys['yelp_api_key']
                 openai_api_key = keys['openai_api_key']
@@ -279,3 +311,74 @@ class YelpBot:
             )
 
         return new_reviews
+
+    def create_bot(self, headless=True) -> None:
+        options = webdriver.ChromeOptions()
+        ua = UserAgent()
+        user_agent = ua.random
+        if headless:
+            options.add_argument("--headless=new")
+        else:
+            options.add_argument("start-maximized")
+        options.add_argument(f'--user-agent={user_agent}')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
+        options.add_argument("--disable-blink-features")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option(
+            "excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
+        self.driver = webdriver.Chrome(options=options)
+        self.driver.execute_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        )
+
+        print(self.driver.execute_script("return navigator.userAgent;"))
+
+    def open_yelp(self) -> None:
+
+        self.driver.get('https://www.yelp.com/')
+        try:
+            WebDriverWait(self.driver, self.long_sleep_time).until(
+                EC.presence_of_element_located((
+                    By.XPATH,
+                    "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/span[3]/button/span"
+                ))
+            ).click()
+
+        except ElementClickInterceptedException:
+            # TODO - implement excpetion handling
+            pass
+
+        self.email_login()
+
+    def email_login(self) -> None:
+        user_credentials_path = os.path.join(
+            self.user_credentials_folder,
+            'user_credentials.json'
+        )
+
+        with open(user_credentials_path) as f:
+            user_credentials = json.load(f)
+            email = user_credentials['email']
+            password = user_credentials['password']
+
+        # Input user email into email input field
+        inputMail = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div/div[4]/form/div[1]/div/label/input"
+            ))
+        )
+        inputMail.send_keys(email)
+        inputMail.send_keys(Keys.RETURN)
+
+        # Input user password into password input field
+        inputPassword = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div/div[4]/form/div[2]/div/label/input"
+            ))
+        )
+        inputPassword.send_keys(password)
+        inputPassword.send_keys(Keys.RETURN)

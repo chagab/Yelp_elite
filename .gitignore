@@ -1,3 +1,4 @@
 api_keys.json
-archives
+user_credentials.json
+archives/
 __pycache__

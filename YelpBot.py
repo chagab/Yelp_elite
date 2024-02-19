@@ -1,4 +1,5 @@
 import json
+import random
 import requests
 from openai import OpenAI
 
@@ -36,9 +37,9 @@ class YelpBot:
         Get the list of restaurants for a given location.
 
         arg:
-            - location[str]: location where to get restaurant from.
+            - location [str]: location where to get restaurant from.
 
-        return:
+        return [list[dict]]:
             - a list of dictionaries containing all the informations
             about the restaurants.
 
@@ -66,9 +67,9 @@ class YelpBot:
         Get the list of reviews of a single restaurant.
 
         arg:
-            - restaurant[str]: name of the restaurant.
+            - restaurant [str]: name of the restaurant.
 
-        return:
+        return [dict]:
             - a dictionary containing the restaurant's url, reviews and
             ratings.
         """
@@ -105,12 +106,12 @@ class YelpBot:
         Get a list of reviews for a list of restaurants.
 
         arg:
-            - restaurants[list[dict]]: a list of dictionaries containing the
+            - restaurants [list[dict]]: a list of dictionaries containing the
             information about the restaurants.
-            - store[bool]: If true, the result of the function will be stored
+            - store [bool]: If true, the result of the function will be stored
             in a json file named true_reviews.json in the file directory.
 
-        return:
+        return [list[str]]:
             - a dictionary where each field name is a restaurant name, each 
             value is a dictionary containing the reviews and rating of the
             given restaurant.
@@ -121,7 +122,6 @@ class YelpBot:
         for restaurant in restaurants:
             reviews = self.get_reviews_from_restaurant(restaurant)
             restaurants_reviews |= reviews
-            print(restaurants_reviews)
 
         if store:
             json.dump(
@@ -132,18 +132,25 @@ class YelpBot:
 
         return restaurants_reviews
 
-    def generate_new_review_text(self, restaurant_review: dict) -> str:
+    def generate_new_review_text(self, restaurant_reviews: dict) -> str:
         """
-        Generate a new review with OpenAI's GPT-3 model based on a list of
-        reviews.
+        Generate a new review's text with OpenAI's GPT-3.5 model based
+        on a list of reviews.
+
+        arg:
+            - restaurant_reviews [dict]: a dictionary containing a list of 
+            reviews for a given restaurant.
+
+        return [str]:
+            - the new review's text
         """
-        restaurant_name = next(iter(restaurant_review))
+        restaurant_name = next(iter(restaurant_reviews))
         prompt = f'Generate a new review for {restaurant_name} based on the '
         prompt += 'following reviews:\n'
 
-        reviews = restaurant_review[restaurant_name]['reviews']
+        reviews = restaurant_reviews[restaurant_name]['reviews']
         for review in reviews.values():
-            prompt += f'- {review['text']}\n'
+            prompt += f"- {review['text']}\n"
 
         prompt += 'Make the new review about a specific dish that was '
         prompt += 'mentionned in the given reviews.\n'
@@ -162,16 +169,36 @@ class YelpBot:
 
     def generate_new_review_rating(self, restaurant_reviews: dict) -> int:
         """
-        Calculate the average rating for the restaurant
+        Generate a new review's rating by computing the avreage of a list
+        of reviews.
+
+        arg:
+            - restaurant_reviews [dict]: a dictionary containing a list of 
+            reviews for a given restaurant.
+
+        return [int]:
+            - the new review's rating
         """
         restaurant_name = next(iter(restaurant_reviews))
         reviews = restaurant_reviews[restaurant_name]['reviews']
-        restaurant_ratings = [review['rating'] for review in reviews]
+        restaurant_ratings = [review['rating'] for review in reviews.values()]
         avg_rating = int(sum(restaurant_ratings) / len(restaurant_ratings))
 
         return avg_rating
 
     def generate_new_review(self, restaurant_reviews: dict) -> dict:
+        """
+        Generate a new review with OpenAI's GPT-3.5 model based on a list of
+        reviews and ratings.
+
+        arg:
+            - restaurant_reviews [dict]: a dictionary containing a list of 
+            reviews for a given restaurant.
+
+        return [dict]:
+            - a dictionary containing the name of the restaurant, it's URL,
+            a new review text and rating
+        """
         restaurant_name = next(iter(restaurant_reviews))
         new_text = self.generate_new_review_text(restaurant_reviews)
         new_rating = self.generate_new_review_rating(restaurant_reviews)
@@ -185,20 +212,49 @@ class YelpBot:
         }
 
         return new_review
-        
 
+    def generate_new_reviews(
+        self,
+        restaurants_reviews: dict,
+        n_per_restaurant=4,
+        store=False
+    ) -> dict:
+        """
+        Generate a list of new reviews with OpenAI's GPT-3.5 model based
+        on a list of reviews and ratings for multiple restaurants.
 
-# # Generate a new review with OpenAI's GPT-3 model
-# for i in range(4):
+        arg:
+            - restaurant_reviews [dict]: a dictionary containing a list of 
+            reviews for multiple restaurants.
+            - n_per_restaurant [int]: how many new reviews to generate per
+            restaurant.
+            - store [bool]: if true the result of the function will be 
+            stored in a json file called new_reviews.json in the working
+            directory.
 
-#     new_review = generate_review(restaurant['name'], review_texts)
-#     # Add the new review and rating to the new_reviews dictionary
-#     new_reviews[f"{restaurant['name']}-{i}"] = {
-#         'url': restaurant['url'],
-#         'review': new_review,
-#         'rating': avg_rating
-#     }
-# review_texts = []
-# review_ratings = []
-# review_texts.append(text)
-# review_ratings.append(rating)
+        return [dict]:
+            - a dictionary containing the list of new reviews 
+        """
+        rating_fluctuations = [-1, 0, 1]
+
+        new_reviews = {}
+        for name, reviews in restaurants_reviews.items():
+            new_reviews[name] = {}
+            new_reviews[name]['url'] = reviews['url']
+            new_reviews[name]['reviews'] = {}
+
+            for i in range(n_per_restaurant):
+                new_reviews[name]['reviews'][i] = {
+                    'text': self.generate_new_review_text({name: reviews}),
+                    'rating': self.generate_new_review_rating({name: reviews}) +
+                    random.choice(rating_fluctuations)
+                }
+
+        if store:
+            json.dump(
+                new_reviews,
+                open("new_reviews.json", 'w'),
+                indent=2
+            )
+
+        return new_reviews

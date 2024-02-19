@@ -1,302 +1,342 @@
 {
-  "Wolfsglen-0": {
+  "Wolfsglen": {
     "url": "https://www.yelp.com/biz/wolfsglen-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Logan and Paris were the absolute best behind the bar. Great drinks and great mixologists. Love the vibe. Will definitely be back.",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "Logan and Paris were the absolute best behind the bar. Great drinks and great mixologists. Love the vibe. Will definitely be back.",
+        "rating": 5
+      },
+      "1": {
+        "text": "The service was so so. When we ordered the third drink, they took a while to bring it out. I have no complaint about the food or the drink\n\nThe drinks...",
+        "rating": 5
+      },
+      "2": {
+        "text": "My friend and I had a nice dinner here last night.  There were pluses and minuses.\n\nOur waiter was very nice.  However, I hate that our entrees showed up...",
+        "rating": 4
+      }
+    }
   },
-  "Wolfsglen-1": {
-    "url": "https://www.yelp.com/biz/wolfsglen-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "The service was so so. When we ordered the third drink, they took a while to bring it out. I have no complaint about the food or the drink\n\nThe drinks...",
-    "rating": 5
-  },
-  "Wolfsglen-2": {
-    "url": "https://www.yelp.com/biz/wolfsglen-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "My friend and I had a nice dinner here last night.  There were pluses and minuses.\n\nOur waiter was very nice.  However, I hate that our entrees showed up...",
-    "rating": 4
-  },
-  "GRANVILLE-0": {
+  "GRANVILLE": {
     "url": "https://www.yelp.com/biz/granville-west-hollywood-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I was extremely satisfied with the food here\neverything tasted great. \nlots of options, and great service",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "Upon walking in, you sense a feeling of relaxation. Tranquil, not bustling. That this was a very busy Friday night with almost every seat occup\u00e1do, was not...",
+        "rating": 5
+      },
+      "1": {
+        "text": "I think this restaurant is a little bit overrated. \nService: very poor \nWe, a group of 4,  went to this branch on Saturday. Although the restaurant wasn't...",
+        "rating": 3
+      },
+      "2": {
+        "text": "Jan 13.2023 Update\n\nBirthday next week so all the birthday coupons are showing up in my email... Elected to go w this one from Granville Restaurant and used...",
+        "rating": 3
+      }
+    }
   },
-  "GRANVILLE-1": {
-    "url": "https://www.yelp.com/biz/granville-west-hollywood-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Upon walking in, you sense a feeling of relaxation. Tranquil, not bustling. That this was a very busy Friday night with almost every seat occup\u00e1do, was not...",
-    "rating": 5
-  },
-  "GRANVILLE-2": {
-    "url": "https://www.yelp.com/biz/granville-west-hollywood-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I think this restaurant is a little bit overrated. \nService: very poor \nWe, a group of 4,  went to this branch on Saturday. Although the restaurant wasn't...",
-    "rating": 3
-  },
-  "ixlb Dimsum Eats- Westwood -0": {
-    "url": "https://www.yelp.com/biz/ixlb-dimsum-eats-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "So happy to see this in Westwood the Hollywood location was a bit of a trek . \nThe best dim sums freshly cooked right there . It's a little factory of dim...",
-    "rating": 5
-  },
-  "ixlb Dimsum Eats- Westwood -1": {
-    "url": "https://www.yelp.com/biz/ixlb-dimsum-eats-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "In general I like the selection, freshness and portion size of the dim sum. The service was very fast. \n\nMinus the first star: a bunch of our dim sum...",
-    "rating": 3
-  },
-  "ixlb Dimsum Eats- Westwood -2": {
-    "url": "https://www.yelp.com/biz/ixlb-dimsum-eats-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Been waiting on this place since forever but like I've been trending regarding almost all the new Asian food-related places in West LA, I've only managed to...",
-    "rating": 4
-  },
-  "Violet Bistro-0": {
-    "url": "https://www.yelp.com/biz/violet-bistro-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I stopped in here to grab dinner after a visit to the Getty museum. I have been trying to find a French restaurant in LA since moving here 7 years ago and...",
-    "rating": 5
-  },
-  "Violet Bistro-1": {
-    "url": "https://www.yelp.com/biz/violet-bistro-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I've been wanting to try Violet Bistro since last year, and was so happy to finally visit for my birthday dinner! \n\nStreet parking was scarce at 7 p.m., but...",
-    "rating": 5
-  },
-  "Violet Bistro-2": {
-    "url": "https://www.yelp.com/biz/violet-bistro-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "This is the second time I have visited this restaurant. The first time knocked it out of the park, this time around it was not as memorable.  \nMy daughter...",
-    "rating": 3
-  },
-  "Pomodoro Trattoria-0": {
-    "url": "https://www.yelp.com/biz/pomodoro-trattoria-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I always passed by Pomodoro while out in Westwood, and there were always long lines outside! Decided to check this place out on a whim-- on a sunday night...",
-    "rating": 5
-  },
-  "Pomodoro Trattoria-1": {
-    "url": "https://www.yelp.com/biz/pomodoro-trattoria-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "The bread here is DELICIOUS. When they asked if i wanted bread on my takeout order, I was expecting one of those sad little paper baggies they usually give...",
-    "rating": 4
-  },
-  "Pomodoro Trattoria-2": {
-    "url": "https://www.yelp.com/biz/pomodoro-trattoria-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Out of town for work and my boss was really craving Italian food. Pulled out Yelp, read all the great reviews about this hidden gem and thought why not give...",
-    "rating": 5
-  },
-  "Prince of Venice Restaurant-0": {
-    "url": "https://www.yelp.com/biz/prince-of-venice-restaurant-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Prince of Venice, you should be called \"King\" of Venice! \n\nPotato Pizza - something new and so delicious. The potatoes are sliced thick but cooked so...",
-    "rating": 5
-  },
-  "Prince of Venice Restaurant-1": {
-    "url": "https://www.yelp.com/biz/prince-of-venice-restaurant-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Prince of Venice is a great spot in Westwood. I've tried their potato pizza, mortadella pizza, pesto pasta and lemon bucatini. Both the pizzas I had were...",
-    "rating": 4
-  },
-  "Prince of Venice Restaurant-2": {
-    "url": "https://www.yelp.com/biz/prince-of-venice-restaurant-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Made my way to Prince of Venice and, folks, the hype is real.  The bolognese? Pure Italian magic. And that slice of sausage and mushroom? I'm still dreaming...",
-    "rating": 4
-  },
-  "Lima Nikkei Westwood-0": {
-    "url": "https://www.yelp.com/biz/lima-nikkei-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "This place is located on the 2nd floor of the newly opened 99 Ranch Market in Westwood.  They have a bar area but apparently you can also seat in the table...",
-    "rating": 5
-  },
-  "Lima Nikkei Westwood-1": {
-    "url": "https://www.yelp.com/biz/lima-nikkei-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Pros\n-good quality \n-thoughtful presentation\n-wagyu was buttery\nCons\n-pricey for the amount of food you get\n-portions",
-    "rating": 3
-  },
-  "Lima Nikkei Westwood-2": {
-    "url": "https://www.yelp.com/biz/lima-nikkei-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Above the new 99 Ranch market in Westwood is a new upscale food court.  There's only a few businesses open, including Lima Nikkei and a Chinese Bbq counter....",
-    "rating": 5
-  },
-  "Jemma di Mare-0": {
-    "url": "https://www.yelp.com/biz/jemma-di-mare-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Delicious food, sleek and clubby ambiance with stellar service earns Jenna di Mare five stars. \n\nWe split the Caesar salad (plenty for two+). Crisp and...",
-    "rating": 5
-  },
-  "Jemma di Mare-1": {
-    "url": "https://www.yelp.com/biz/jemma-di-mare-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "-Garlic bread was fire \n-Brussels sprouts were good \n-pesto pasta and rigatoni vodka were ok. I feel like I could have made something much better- it wasn't...",
-    "rating": 3
-  },
-  "Jemma di Mare-2": {
-    "url": "https://www.yelp.com/biz/jemma-di-mare-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Located on the upper floor of a retail complex on San Vicente, Jemma Di Mare is a great addition to the dining scene in Brentwood. It's not old school...",
-    "rating": 5
-  },
-  "Toranj-0": {
-    "url": "https://www.yelp.com/biz/toranj-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Toranj is the first of the many Persian restaurants in the Westwood area that I've visited so far. Verdict: Great food and ambiance, though it is a bit...",
-    "rating": 5
-  },
-  "Toranj-1": {
-    "url": "https://www.yelp.com/biz/toranj-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Very delicious food and professional service. The place was packed when we got there and we had  to sit outside but they helped us with moving the heaters...",
-    "rating": 5
-  },
-  "Toranj-2": {
-    "url": "https://www.yelp.com/biz/toranj-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Ambience is good.  Service is good.  Food is a bit pricey, but quality.\n\nI would recommend.  However I think Rafis is better overall if you are in that area...",
-    "rating": 3
-  },
-  "The Brixton-0": {
-    "url": "https://www.yelp.com/biz/the-brixton-santa-monica?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Awesome food and great service! Jeff was amazing and gave the best recommendation - I loved the grilled adobo chicken :)",
-    "rating": 5
-  },
-  "The Brixton-1": {
-    "url": "https://www.yelp.com/biz/the-brixton-santa-monica?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Great happy hour, I can work on my laptop and enjoy HH. Pedro is awesome!!! Fav server ever.\n\n#WIN",
-    "rating": 5
-  },
-  "The Brixton-2": {
-    "url": "https://www.yelp.com/biz/the-brixton-santa-monica?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Pros: fantastic menu selection; a little bit for everyone: anything with short-rib is a must like the melt. Friendly bartender a plus. Multiple TV good for...",
-    "rating": 4
-  },
-  "The HIDEOUT-0": {
+  "The HIDEOUT": {
     "url": "https://www.yelp.com/biz/the-hideout-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Joseph P was my server today, I just moved to LA last week to start school and i must say he was absolutely amazing, friendly and attentive. He made me feel...",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "Joseph P was my server today, I just moved to LA last week to start school and i must say he was absolutely amazing, friendly and attentive. He made me feel...",
+        "rating": 5
+      },
+      "1": {
+        "text": "I lived at the W hotel for a week and I went to The Hideaway daily for breakfast and sometimes happy hour. \n\nNINO AND JOS\u00c9 ARE SERVERS THAT DESERVE TO BE...",
+        "rating": 5
+      },
+      "2": {
+        "text": "Quite a disappointing lunch experience. We came mid-week and figured it would be less crowded, which it definitely was. There were just a few tables...",
+        "rating": 2
+      }
+    }
   },
-  "The HIDEOUT-1": {
-    "url": "https://www.yelp.com/biz/the-hideout-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I lived at the W hotel for a week and I went to The Hideaway daily for breakfast and sometimes happy hour. \n\nNINO AND JOS\u00c9 ARE SERVERS THAT DESERVE TO BE...",
-    "rating": 5
+  "ixlb Dimsum Eats- Westwood ": {
+    "url": "https://www.yelp.com/biz/ixlb-dimsum-eats-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "So happy to see this in Westwood the Hollywood location was a bit of a trek . \nThe best dim sums freshly cooked right there . It's a little factory of dim...",
+        "rating": 5
+      },
+      "1": {
+        "text": "In general I like the selection, freshness and portion size of the dim sum. The service was very fast. \n\nMinus the first star: a bunch of our dim sum...",
+        "rating": 3
+      },
+      "2": {
+        "text": "Been waiting on this place since forever but like I've been trending regarding almost all the new Asian food-related places in West LA, I've only managed to...",
+        "rating": 4
+      }
+    }
   },
-  "The HIDEOUT-2": {
-    "url": "https://www.yelp.com/biz/the-hideout-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Quite a disappointing lunch experience. We came mid-week and figured it would be less crowded, which it definitely was. There were just a few tables...",
-    "rating": 2
+  "Jemma di Mare": {
+    "url": "https://www.yelp.com/biz/jemma-di-mare-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Delicious food, sleek and clubby ambiance with stellar service earns Jenna di Mare five stars. \n\nWe split the Caesar salad (plenty for two+). Crisp and...",
+        "rating": 5
+      },
+      "1": {
+        "text": "-Garlic bread was fire \n-Brussels sprouts were good \n-pesto pasta and rigatoni vodka were ok. I feel like I could have made something much better- it wasn't...",
+        "rating": 3
+      },
+      "2": {
+        "text": "Located on the upper floor of a retail complex on San Vicente, Jemma Di Mare is a great addition to the dining scene in Brentwood. It's not old school...",
+        "rating": 5
+      }
+    }
   },
-  "Hijo De Su Madre-0": {
-    "url": "https://www.yelp.com/biz/hijo-de-su-madre-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "This place was amazing! So friendly, great food, and unpretentious! We were impressed by the inventiveness & flavors; will be back! \n\nThe spot itself is...",
-    "rating": 5
+  "Lima Nikkei Westwood": {
+    "url": "https://www.yelp.com/biz/lima-nikkei-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "1. This is on the second floor of the newly opened 99 ranch, in case anyone was confused\n2. Amazing service \n3. Prices were kind of expensive, especially...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Pros\n-good quality \n-thoughtful presentation\n-wagyu was buttery\nCons\n-pricey for the amount of food you get\n-portions",
+        "rating": 3
+      },
+      "2": {
+        "text": "This place is located on the 2nd floor of the newly opened 99 Ranch Market in Westwood.  They have a bar area but apparently you can also seat in the table...",
+        "rating": 5
+      }
+    }
   },
-  "Hijo De Su Madre-1": {
-    "url": "https://www.yelp.com/biz/hijo-de-su-madre-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "stumbled upon this awesome spot while on a quick business trip. very unique menu full of items that are made in house - salsa, a super tasty pumpkin seed...",
-    "rating": 5
+  "The Brixton": {
+    "url": "https://www.yelp.com/biz/the-brixton-santa-monica?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Awesome food and great service! Jeff was amazing and gave the best recommendation - I loved the grilled adobo chicken :)",
+        "rating": 5
+      },
+      "1": {
+        "text": "Great happy hour, I can work on my laptop and enjoy HH. Pedro is awesome!!! Fav server ever.\n\n#WIN",
+        "rating": 5
+      },
+      "2": {
+        "text": "Pros: fantastic menu selection; a little bit for everyone: anything with short-rib is a must like the melt. Friendly bartender a plus. Multiple TV good for...",
+        "rating": 4
+      }
+    }
   },
-  "Hijo De Su Madre-2": {
-    "url": "https://www.yelp.com/biz/hijo-de-su-madre-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Food: Just amazing. Right quantity. Right amount of spice and feels fresh and healthy. Everything from appetizer to tacos to bowls was just amazing....",
-    "rating": 5
+  "Toranj": {
+    "url": "https://www.yelp.com/biz/toranj-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Toranj is the first of the many Persian restaurants in the Westwood area that I've visited so far. Verdict: Great food and ambiance, though it is a bit...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Very delicious food and professional service. The place was packed when we got there and we had  to sit outside but they helped us with moving the heaters...",
+        "rating": 5
+      },
+      "2": {
+        "text": "Ambience is good.  Service is good.  Food is a bit pricey, but quality.\n\nI would recommend.  However I think Rafis is better overall if you are in that area...",
+        "rating": 3
+      }
+    }
   },
-  "Umberto Trattoria-0": {
-    "url": "https://www.yelp.com/biz/umberto-trattoria-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "We had spent the entire day at the Getty museum, which is literally a mile from this restaurant. \nIt's a little bit difficult to find if you make it to the...",
-    "rating": 5
+  "Violet Bistro": {
+    "url": "https://www.yelp.com/biz/violet-bistro-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "I have been to Violet twice now and absolutely LOVED it both times! The owner, Dana is so friendly and welcoming. Our server last night, Jeff was wonderful!...",
+        "rating": 5
+      },
+      "1": {
+        "text": "I stopped in here to grab dinner after a visit to the Getty museum. I have been trying to find a French restaurant in LA since moving here 7 years ago and...",
+        "rating": 5
+      },
+      "2": {
+        "text": "I've been wanting to try Violet Bistro since last year, and was so happy to finally visit for my birthday dinner! \n\nStreet parking was scarce at 7 p.m., but...",
+        "rating": 5
+      }
+    }
   },
-  "Umberto Trattoria-1": {
-    "url": "https://www.yelp.com/biz/umberto-trattoria-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Food was just ehhhh  didn't  wow me and I'm a big fan of fish and or sea food.\nService was great very friendly and good atmosphere.\nVery quiet  which I love...",
-    "rating": 4
-  },
-  "Umberto Trattoria-2": {
-    "url": "https://www.yelp.com/biz/umberto-trattoria-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "We had a reservation today at 1pm.  When we arrived it was closed with people waiting outside for their own reservations.  No sign, nothing indicating what...",
-    "rating": 1
-  },
-  "Emporium Thai-0": {
+  "Emporium Thai": {
     "url": "https://www.yelp.com/biz/emporium-thai-los-angeles-5?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Excellent, yummy food! Fast seating, with speedy, polite service! Best Pad Prix in the city!",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "Excellent, yummy food! Fast seating, with speedy, polite service! Best Pad Prix in the city!",
+        "rating": 5
+      },
+      "1": {
+        "text": "The food was amazing!! We got the pad thai, drunken noodles, and massaman curry and it was ALL delicious. Highly recommend the curry for sure!",
+        "rating": 5
+      },
+      "2": {
+        "text": "I get delivery here whenever I want Thai as someone who can't eat gluten. The fact they're very explicit which sauces they don't use put me at ease...",
+        "rating": 5
+      }
+    }
   },
-  "Emporium Thai-1": {
-    "url": "https://www.yelp.com/biz/emporium-thai-los-angeles-5?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "The food was amazing!! We got the pad thai, drunken noodles, and massaman curry and it was ALL delicious. Highly recommend the curry for sure!",
-    "rating": 5
+  "Pomodoro Trattoria": {
+    "url": "https://www.yelp.com/biz/pomodoro-trattoria-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "I always passed by Pomodoro while out in Westwood, and there were always long lines outside! Decided to check this place out on a whim-- on a sunday night...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Lovely little Italian restaurant that feels family-owned and neighborhood-y.\n\nI had the Chopped salad and loved it.\nThe bread is delicious, too.\n\nKeep in...",
+        "rating": 4
+      },
+      "2": {
+        "text": "The bread here is DELICIOUS. When they asked if i wanted bread on my takeout order, I was expecting one of those sad little paper baggies they usually give...",
+        "rating": 4
+      }
+    }
   },
-  "Emporium Thai-2": {
-    "url": "https://www.yelp.com/biz/emporium-thai-los-angeles-5?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "The best pad Thai I've had in a long time, the service and environment was great too.",
-    "rating": 5
-  },
-  "Palmsugar Thai To-Go-0": {
-    "url": "https://www.yelp.com/biz/palmsugar-thai-to-go-los-angeles-6?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Intrigued about idea of a to-go-only spot with such great reviews in this area (lots of great places/options for dinner). \n\nI got the red curry w/pineapple...",
-    "rating": 5
-  },
-  "Palmsugar Thai To-Go-1": {
-    "url": "https://www.yelp.com/biz/palmsugar-thai-to-go-los-angeles-6?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Last night, prior to going to a concert, I stopped here to get something to quell my hunger for the next few hours. The yelp reviews were pretty good, and I...",
-    "rating": 1
-  },
-  "Palmsugar Thai To-Go-2": {
-    "url": "https://www.yelp.com/biz/palmsugar-thai-to-go-los-angeles-6?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Omg, miss please please PLEASE stay here in Westwood. And don't change the recipe for this Pad Thai because it is AMAZINGGG. \n\nA little backstory, my cousin...",
-    "rating": 5
-  },
-  "Mogumogu-0": {
+  "Mogumogu": {
     "url": "https://www.yelp.com/biz/mogumogu-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "My 2 sons and arrived around 1pm on a Saturday and there was a waitlist... we were 3rd on the list and the other 2 groups had 4 people on each of their...",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "My 2 sons and arrived around 1pm on a Saturday and there was a waitlist... we were 3rd on the list and the other 2 groups had 4 people on each of their...",
+        "rating": 5
+      },
+      "1": {
+        "text": "I have to admit that I was a little bit of a ramen hater because sometimes the broth just feels too fatty. I know that sounds crazy to say because some...",
+        "rating": 5
+      },
+      "2": {
+        "text": "This is by far my favorite place for  Mazemen(Japanese brothless mixed noodles) \n\nFood: I ordered Deluxe Mazemen. You MUST FOLLOW THE INSTRUCTIONS/STEPS to...",
+        "rating": 5
+      }
+    }
   },
-  "Mogumogu-1": {
-    "url": "https://www.yelp.com/biz/mogumogu-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I have to admit that I was a little bit of a ramen hater because sometimes the broth just feels too fatty. I know that sounds crazy to say because some...",
-    "rating": 5
-  },
-  "Mogumogu-2": {
-    "url": "https://www.yelp.com/biz/mogumogu-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "This is by far my favorite place for  Mazemen(Japanese brothless mixed noodles) \n\nFood: I ordered Deluxe Mazemen. You MUST FOLLOW THE INSTRUCTIONS/STEPS to...",
-    "rating": 5
-  },
-  "Sichuan Impression-0": {
-    "url": "https://www.yelp.com/biz/sichuan-impression-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "This is definitely a good place to have authentic Chinese food. You can have both spicy and non-spicy food here and enjoy a great time with family.",
-    "rating": 5
-  },
-  "Sichuan Impression-1": {
-    "url": "https://www.yelp.com/biz/sichuan-impression-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Great food here! The beef is really delicious and the fish tastes well. Will definitely be back",
-    "rating": 5
-  },
-  "Sichuan Impression-2": {
-    "url": "https://www.yelp.com/biz/sichuan-impression-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Delicious and authentic Sichuan food! Steamed pork was my favorite. Dumplings and beef were good as well.",
-    "rating": 5
-  },
-  "Northern Cafe Chinese Hot Pot-0": {
-    "url": "https://www.yelp.com/biz/northern-cafe-chinese-hot-pot-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Great place for single or a small group to enjoy Chinese hot pot. I almost tried every hotpot flavours and found every one of them worth trying.",
-    "rating": 5
-  },
-  "Northern Cafe Chinese Hot Pot-1": {
-    "url": "https://www.yelp.com/biz/northern-cafe-chinese-hot-pot-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "SO GOOD. \n\nService was prompt and fast. \nFood was obviously delicious. I personally think the sauce is better than the one served at boiling point. Also had...",
-    "rating": 5
-  },
-  "Northern Cafe Chinese Hot Pot-2": {
-    "url": "https://www.yelp.com/biz/northern-cafe-chinese-hot-pot-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "If you want a quick fix of hotpot this is your place. It's not the best but it's quick, convenient if you're in the area and always hits the spot. I usually...",
-    "rating": 4
-  },
-  "KazuNori | Westwood-0": {
-    "url": "https://www.yelp.com/biz/kazunori-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "9 days ago I had some oral surgery at my favorite periodontist Dr Tracy G. A lot of stitches followed by ( after numbing medication wore off), a boatload of...",
-    "rating": 5
-  },
-  "KazuNori | Westwood-1": {
-    "url": "https://www.yelp.com/biz/kazunori-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "The KazuNori experience is hyped up for good reason. I've been here multiple times, and I'm always happy with what I order and my experience dining there....",
-    "rating": 5
-  },
-  "KazuNori | Westwood-2": {
-    "url": "https://www.yelp.com/biz/kazunori-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "You can never go wrong with Kazunori! Parking is a pain but there are UCLA parking lots in the area and if you're lucky street parking. I went after work...",
-    "rating": 5
-  },
-  "Mr Rice-0": {
+  "Mr Rice": {
     "url": "https://www.yelp.com/biz/mr-rice-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Servers were SO AWESOME!! They are very kind and willing to help out. Food was great, and it was a home-y aesthetic. I would suggest eating here! \n\nThank...",
-    "rating": 5
+    "reviews": {
+      "0": {
+        "text": "Servers were SO AWESOME!! They are very kind and willing to help out. Food was great, and it was a home-y aesthetic. I would suggest eating here! \n\nThank...",
+        "rating": 5
+      },
+      "1": {
+        "text": "I wasn't expecting much and saw no other customers when I arrived, but glad to give this place a try. I enjoyed the Grandma's Dry Mixian dish. I think the...",
+        "rating": 4
+      },
+      "2": {
+        "text": "Wanted to get some soup on a rainy night in Westwood village before going to watch UCLA basketball.  I would say it's authentic Asian food, because  other...",
+        "rating": 4
+      }
+    }
   },
-  "Mr Rice-1": {
-    "url": "https://www.yelp.com/biz/mr-rice-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "I wasn't expecting much and saw no other customers when I arrived, but glad to give this place a try. I enjoyed the Grandma's Dry Mixian dish. I think the...",
-    "rating": 4
+  "Northern Cafe Chinese Hot Pot": {
+    "url": "https://www.yelp.com/biz/northern-cafe-chinese-hot-pot-los-angeles-3?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "SO GOOD. \n\nService was prompt and fast. \nFood was obviously delicious. I personally think the sauce is better than the one served at boiling point. Also had...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Food: the flavor of the hot pot was on point. Spicy, good umami, creamy broth texture. The experience is different than traditional hot pot since the add...",
+        "rating": 4
+      },
+      "2": {
+        "text": "If you want a quick fix of hotpot this is your place. It's not the best but it's quick, convenient if you're in the area and always hits the spot. I usually...",
+        "rating": 4
+      }
+    }
   },
-  "Mr Rice-2": {
-    "url": "https://www.yelp.com/biz/mr-rice-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
-    "review": "Wanted to get some soup on a rainy night in Westwood village before going to watch UCLA basketball.  I would say it's authentic Asian food, because  other...",
-    "rating": 4
+  "Lulu": {
+    "url": "https://www.yelp.com/biz/lulu-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "We went for the first time for lunch Christmas week. So we were there to get the full experience. By half way through our meal, we'd already decided to make...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Amazing venue under the Hammer museum in a beautiful outdoor courtyard, but really underwhelming menu and jarringly lackluster service, I think unusual for...",
+        "rating": 3
+      },
+      "2": {
+        "text": "Have been to Lulu in the past for their pre fix menu. This time we decided to order from the ala carte menu and was not disappointed.\n\nWe ordered the autumn...",
+        "rating": 5
+      }
+    }
+  },
+  "KazuNori | Westwood": {
+    "url": "https://www.yelp.com/biz/kazunori-westwood-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "9 days ago I had some oral surgery at my favorite periodontist Dr Tracy G. A lot of stitches followed by ( after numbing medication wore off), a boatload of...",
+        "rating": 5
+      },
+      "1": {
+        "text": "The KazuNori experience is hyped up for good reason. I've been here multiple times, and I'm always happy with what I order and my experience dining there....",
+        "rating": 5
+      },
+      "2": {
+        "text": "You can never go wrong with Kazunori! Parking is a pain but there are UCLA parking lots in the area and if you're lucky street parking. I went after work...",
+        "rating": 5
+      }
+    }
+  },
+  "Palmsugar Thai To-Go": {
+    "url": "https://www.yelp.com/biz/palmsugar-thai-to-go-los-angeles-6?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Intrigued about idea of a to-go-only spot with such great reviews in this area (lots of great places/options for dinner). \n\nI got the red curry w/pineapple...",
+        "rating": 5
+      },
+      "1": {
+        "text": "Last night, prior to going to a concert, I stopped here to get something to quell my hunger for the next few hours. The yelp reviews were pretty good, and I...",
+        "rating": 1
+      },
+      "2": {
+        "text": "Omg, miss please please PLEASE stay here in Westwood. And don't change the recipe for this Pad Thai because it is AMAZINGGG. \n\nA little backstory, my cousin...",
+        "rating": 5
+      }
+    }
+  },
+  "1212 Santa Monica": {
+    "url": "https://www.yelp.com/biz/1212-santa-monica-santa-monica-5?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Restaurant was amazing\nThe food was up to par\nI had the chicken sandwich and egg bendict.\nThe drinks were 10/10\nWill was an amazing server and he provided...",
+        "rating": 5
+      },
+      "1": {
+        "text": "it was great service provided by Anna. \nAmbiance is so cozy. I'll be back there for sure.",
+        "rating": 5
+      },
+      "2": {
+        "text": "Great ambiance, food quality and service speed. Nike was my server - he was super friendly and helpful. \n\nHaven't been to Santa Monica in a minute but the...",
+        "rating": 5
+      }
+    }
+  },
+  "Hangry Moon's": {
+    "url": "https://www.yelp.com/biz/hangry-moons-los-angeles?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "Hangry Moons is the BEST. Definitely the best food place near UCLA or in Westwood. Drunk or sober, Hangry Moons will be there for any craving you have and...",
+        "rating": 5
+      },
+      "1": {
+        "text": "fire fries but idk how the water tastes yet\n\ngreat food and service like the canes i wish i had in westwood",
+        "rating": 5
+      },
+      "2": {
+        "text": "Hangry moon's satisfied our hunger craving on a cold night! Their thicc fries are loaded with various toppings for a great price, especially considering...",
+        "rating": 4
+      }
+    }
+  },
+  "Sichuan Impression": {
+    "url": "https://www.yelp.com/biz/sichuan-impression-los-angeles-2?adjust_creative=_JYYxIM0L3dzWPbyyU37ZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_JYYxIM0L3dzWPbyyU37ZA",
+    "reviews": {
+      "0": {
+        "text": "This is the first time at this location for me. It is located in a small shopping center and parking will be a challenge. It has valet parking from Monday...",
+        "rating": 5
+      },
+      "1": {
+        "text": "The food was really tasty but it's a bit pricey for what you get. They charge extra for things like rice and tea, too. Def worth checking out regardless if...",
+        "rating": 4
+      },
+      "2": {
+        "text": "An unexpected ride with lots of curves in the form of Sichuan seasonings and spices. I had done take-out once, but have now dined in, which is the better...",
+        "rating": 4
+      }
+    }
   }
 }

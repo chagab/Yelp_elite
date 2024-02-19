@@ -1,3 +1,4 @@
+import os
 import json
 import random
 import requests
@@ -25,6 +26,7 @@ class YelpBot:
         self.base_url = f'https://api.yelp.com/v3/businesses/'
 
         self.openAI_client = OpenAI(api_key=openai_api_key)
+        self.store_folder = 'res'
 
         YelpBot._all.append(self)
 
@@ -54,10 +56,19 @@ class YelpBot:
         # Extract the list of restaurants from the response
         list_of_restaurants = response.json()
         restaurants = list_of_restaurants['businesses']
+
         if store:
+            if not os.path.isdir(self.store_folder):
+                os.makedirs(self.store_folder)
+
+            store_path = os.path.join(
+                self.store_folder,
+                "list_of_restaurants.json"
+            )
+
             json.dump(
                 list_of_restaurants,
-                open("list_of_restaurants.json", 'w'),
+                open(store_path, 'w'),
                 indent=2
             )
         return restaurants
@@ -124,9 +135,14 @@ class YelpBot:
             restaurants_reviews |= reviews
 
         if store:
+            if not os.path.isdir(self.store_folder):
+                os.makedirs(self.store_folder)
+
+            store_path = os.path.join(self.store_folder, "true_reviews.json")
+
             json.dump(
                 restaurants_reviews,
-                open("true_reviews.json", 'w'),
+                open(store_path, 'w'),
                 indent=2
             )
 
@@ -251,9 +267,14 @@ class YelpBot:
                 }
 
         if store:
+            if not os.path.isdir(self.store_folder):
+                os.makedirs(self.store_folder)
+
+            store_path = os.path.join(self.store_folder, "new_reviews.json")
+
             json.dump(
                 new_reviews,
-                open("new_reviews.json", 'w'),
+                open(store_path, 'w'),
                 indent=2
             )
 

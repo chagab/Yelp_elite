@@ -1,8 +1,10 @@
 import os
+import re
 import json
 import random
 import requests
 from openai import OpenAI
+from bs4 import BeautifulSoup
 
 from fake_useragent import UserAgent
 from selenium.webdriver.chrome.service import Service
@@ -65,7 +67,7 @@ class YelpBot:
     def get_list_of_restaurants_from_location(
         self,
         location,
-        store=False
+        store=True
     ) -> list[dict]:
         """
         Get the list of restaurants for a given location.
@@ -80,6 +82,7 @@ class YelpBot:
         """
 
         # Define the URL for the Yelp Fusion API to search for restaurants
+        self.location = location
         url = self.base_url + f'search?term=restaurants&location={location}'
 
         # Send a request to the API and get the response
@@ -105,12 +108,18 @@ class YelpBot:
             )
         return restaurants
 
-    def get_reviews_from_restaurant(self, restaurant: str) -> dict:
+    def get_reviews_from_restaurant(
+        self,
+        restaurant: str,
+        number_of_pages=1
+    ) -> dict:
         """
         Get the list of reviews of a single restaurant.
 
         arg:
             - restaurant [str]: name of the restaurant.
+            - number_of_pages [int]: the Yelp website displays only 10 reviews
+            per pages. This argument allows to scrape a multiple pages.
 
         return [dict]:
             - a dictionary containing the restaurant's url, reviews and
@@ -118,31 +127,54 @@ class YelpBot:
         """
         # Define the URL for the Yelp Fusion API to get reviews
         # for the restaurant
-        business_id = restaurant['id']
-        url = self.base_url + f'{business_id}/reviews'
-
-        # Send a request to the API and get the response
-        response = requests.get(url, headers=self.headers)
-        response_data = response.json()
-        reviews = response_data['reviews']
-
-        # Extract the list of reviews and their ratings from the response
+        # business_id = restaurant['id']
+        # url = self.base_url + f'{business_id}/reviews'
         restaurant_reviews = {}
         name = restaurant['name']
         restaurant_reviews[name] = {}
         restaurant_reviews[name]['url'] = restaurant['url']
         restaurant_reviews[name]['reviews'] = {}
-        for i, review in enumerate(reviews):
-            restaurant_reviews[name]['reviews'][i] = {
-                'text': review['text'],
-                'rating': review['rating']
-            }
+
+        i = 0
+        for page_index in range(number_of_pages):
+            print(f"Scraping {restaurant['name']}, page {page_index + 1}")
+            url = f"{restaurant['url']}&start={page_index * 10}"
+
+            # Get the restaurant's page
+            response = requests.get(url)
+
+            # Parse the HTML response
+            soup = BeautifulSoup(response.text, "html.parser")
+
+            # Extract all reviews for a page
+            pattern = re.compile(r'^comment__')
+            reviews = soup.find_all('p', class_=pattern)
+            # Extract the star ratings for a given review and store the
+            # (review, rating) couple in the return dictionnary
+            for review in reviews:
+                # Find the previous <div> tag with the specified attributes
+                div_tag = review.find_previous(
+                    'div',
+                    class_='css-14g69b3',
+                    role='img'
+                )
+
+                star_rating = list(div_tag['aria-label'])[0]
+                review_text = review.text.replace(u'\xa0', u' ')
+                review_text = ' '.join(review_text.split())
+
+                restaurant_reviews[name]['reviews'][i] = {
+                    'text': review_text,
+                    'rating': star_rating
+                }
+                i += 1
 
         return restaurant_reviews
 
-    def get_reviews_from_restaurants(
+    def get_reviews_from_list_of_restaurants(
         self,
         restaurants: list[dict],
+        number_of_pages=1,
         store=True
     ) -> list[str]:
         """
@@ -163,9 +195,14 @@ class YelpBot:
         restaurants_reviews = {}
 
         for restaurant in restaurants:
-            reviews = self.get_reviews_from_restaurant(restaurant)
+            reviews = self.get_reviews_from_restaurant(
+                restaurant,
+                number_of_pages
+            )
             restaurants_reviews |= reviews
 
+        # TODO - store each iteration such that if there is a crash, the work
+        # done isn't lost
         if store:
             if not os.path.isdir(self.store_folder):
                 os.makedirs(self.store_folder)
@@ -265,7 +302,7 @@ class YelpBot:
         self,
         restaurants_reviews: dict,
         n_per_restaurant=4,
-        store=False
+        store=True
     ) -> dict:
         """
         Generate a list of new reviews with OpenAI's GPT-3.5 model based
@@ -299,6 +336,8 @@ class YelpBot:
                 }
 
         if store:
+            # TODO - store each iteration such that if there is a crash, the work
+            # done isn't lost
             if not os.path.isdir(self.store_folder):
                 os.makedirs(self.store_folder)
 
@@ -382,3 +421,24 @@ class YelpBot:
         )
         inputPassword.send_keys(password)
         inputPassword.send_keys(Keys.RETURN)
+
+    def open_restaurant_page(self, restaurant) -> None:
+        # Input location of restaurant
+        inputLocation = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[3]/div/header/div/div[1]/div[2]/div/div/div/div/form/div[2]/div/input[2]"
+            ))
+        )
+        inputLocation.send_keys(Keys.DELETE)
+        inputLocation.send_keys(self.location)
+
+        inputRestaurant = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[2]/div/div/div/div/form/div[1]/div/input[1]"
+            ))
+        )
+        inputRestaurant.click()
+        inputRestaurant.send_keys(restaurant)
+        inputRestaurant.send_keys(Keys.RETURN)

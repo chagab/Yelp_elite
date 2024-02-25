@@ -159,7 +159,7 @@ class YelpBot:
                     role='img'
                 )
 
-                star_rating = list(div_tag['aria-label'])[0]
+                star_rating = float(list(div_tag['aria-label'])[0])
                 review_text = review.text.replace(u'\xa0', u' ')
                 review_text = ' '.join(review_text.split())
 
@@ -217,7 +217,11 @@ class YelpBot:
 
         return restaurants_reviews
 
-    def generate_new_review_text(self, restaurant_reviews: dict) -> str:
+    def generate_new_review_text(
+        self,
+        restaurant_reviews: dict,
+        number_of_reviews=None,
+    ) -> str:
         """
         Generate a new review's text with OpenAI's GPT-3.5 model based
         on a list of reviews.
@@ -225,6 +229,9 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for a given restaurant.
+            - number_of_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate the new review. By default,
+            it will take all the reviews into account.
 
         return [str]:
             - the new review's text
@@ -234,8 +241,11 @@ class YelpBot:
         prompt += 'following reviews:\n'
 
         reviews = restaurant_reviews[restaurant_name]['reviews']
-        for review in reviews.values():
-            prompt += f"- {review['text']}\n"
+        if number_of_reviews is None:
+            number_of_reviews = len(reviews.values())
+        for i, review in enumerate(reviews.values()):
+            if i < number_of_reviews:
+                prompt += f"- {review['text']}\n"
 
         prompt += 'Make the new review about a specific dish that was '
         prompt += 'mentionned in the given reviews.\n'
@@ -271,7 +281,11 @@ class YelpBot:
 
         return avg_rating
 
-    def generate_new_review(self, restaurant_reviews: dict) -> dict:
+    def generate_new_review(
+        self,
+        restaurant_reviews: dict,
+        number_of_reviews=None,
+    ) -> dict:
         """
         Generate a new review with OpenAI's GPT-3.5 model based on a list of
         reviews and ratings.
@@ -279,13 +293,19 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for a given restaurant.
+            - number_of_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate the new review. By default,
+            it will take all the reviews into account.
 
         return [dict]:
             - a dictionary containing the name of the restaurant, it's URL,
             a new review text and rating
         """
         restaurant_name = next(iter(restaurant_reviews))
-        new_text = self.generate_new_review_text(restaurant_reviews)
+        new_text = self.generate_new_review_text(
+            restaurant_reviews,
+            number_of_reviews
+        )
         new_rating = self.generate_new_review_rating(restaurant_reviews)
         new_review = {
             restaurant_name:
@@ -298,10 +318,11 @@ class YelpBot:
 
         return new_review
 
-    def generate_new_reviews(
+    def generate_list_of_new_reviews(
         self,
         restaurants_reviews: dict,
-        n_per_restaurant=4,
+        n_input_reviews=None,
+        n_output_reviews=1,
         store=True
     ) -> dict:
         """
@@ -311,8 +332,12 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for multiple restaurants.
-            - n_per_restaurant [int]: how many new reviews to generate per
-            restaurant.
+            - n_input_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate a new review. By default,
+            it will take all the reviews into account.
+            - n_output_reviews [int]: how many new reviews to generate per
+            restaurant. By default, it will generate one new review per
+            restaurant
             - store [bool]: if true the result of the function will be 
             stored in a json file called new_reviews.json in the working
             directory.
@@ -328,7 +353,10 @@ class YelpBot:
             new_reviews[name]['url'] = reviews['url']
             new_reviews[name]['reviews'] = {}
 
-            for i in range(n_per_restaurant):
+            for i in range(n_output_reviews):
+                if i % 10 == 0 and i > 1:
+                    print(
+                        f"Generating reviews for {name}, number of reviews generated {i}")
                 new_reviews[name]['reviews'][i] = {
                     'text': self.generate_new_review_text({name: reviews}),
                     'rating': self.generate_new_review_rating({name: reviews}) +

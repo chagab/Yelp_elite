@@ -1,18 +1,52 @@
 import os
+import re
 import json
 import random
 import requests
 from openai import OpenAI
+from bs4 import BeautifulSoup
+
+from fake_useragent import UserAgent
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    TimeoutException
+)
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium import webdriver
 
 
 class YelpBot:
 
     _all = []
 
-    def __init__(self, yelp_api_key=None) -> None:
+    short_sleep_time = 3
+    long_sleep_time = 10
+    _current_location = ''
+
+    def __init__(
+        self,
+        yelp_api_key=None,
+        # TODO - add an argument for the openAI key
+        user_credentials_folder=None
+    ) -> None:
 
         if yelp_api_key is None:
-            with open('api_keys.json') as f:
+
+            if user_credentials_folder is None:
+                self.user_credentials_folder = 'user_credentials'
+            else:
+                self.user_credentials_folder = user_credentials_folder
+
+            api_key_path = os.path.join(
+                self.user_credentials_folder,
+                'api_keys.json'
+            )
+
+            with open(api_key_path) as f:
                 keys = json.load(f)
                 yelp_api_key = keys['yelp_api_key']
                 openai_api_key = keys['openai_api_key']
@@ -33,7 +67,7 @@ class YelpBot:
     def get_list_of_restaurants_from_location(
         self,
         location,
-        store=False
+        store=True
     ) -> list[dict]:
         """
         Get the list of restaurants for a given location.
@@ -48,6 +82,7 @@ class YelpBot:
         """
 
         # Define the URL for the Yelp Fusion API to search for restaurants
+        self.location = location
         url = self.base_url + f'search?term=restaurants&location={location}'
 
         # Send a request to the API and get the response
@@ -73,12 +108,18 @@ class YelpBot:
             )
         return restaurants
 
-    def get_reviews_from_restaurant(self, restaurant: str) -> dict:
+    def get_reviews_from_restaurant(
+        self,
+        restaurant: str,
+        number_of_pages=1
+    ) -> dict:
         """
         Get the list of reviews of a single restaurant.
 
         arg:
             - restaurant [str]: name of the restaurant.
+            - number_of_pages [int]: the Yelp website displays only 10 reviews
+            per pages. This argument allows to scrape a multiple pages.
 
         return [dict]:
             - a dictionary containing the restaurant's url, reviews and
@@ -86,31 +127,54 @@ class YelpBot:
         """
         # Define the URL for the Yelp Fusion API to get reviews
         # for the restaurant
-        business_id = restaurant['id']
-        url = self.base_url + f'{business_id}/reviews'
-
-        # Send a request to the API and get the response
-        response = requests.get(url, headers=self.headers)
-        response_data = response.json()
-        reviews = response_data['reviews']
-
-        # Extract the list of reviews and their ratings from the response
+        # business_id = restaurant['id']
+        # url = self.base_url + f'{business_id}/reviews'
         restaurant_reviews = {}
         name = restaurant['name']
         restaurant_reviews[name] = {}
         restaurant_reviews[name]['url'] = restaurant['url']
         restaurant_reviews[name]['reviews'] = {}
-        for i, review in enumerate(reviews):
-            restaurant_reviews[name]['reviews'][i] = {
-                'text': review['text'],
-                'rating': review['rating']
-            }
+
+        i = 0
+        for page_index in range(number_of_pages):
+            print(f"Scraping {restaurant['name']}, page {page_index + 1}")
+            url = f"{restaurant['url']}&start={page_index * 10}"
+
+            # Get the restaurant's page
+            response = requests.get(url)
+
+            # Parse the HTML response
+            soup = BeautifulSoup(response.text, "html.parser")
+
+            # Extract all reviews for a page
+            pattern = re.compile(r'^comment__')
+            reviews = soup.find_all('p', class_=pattern)
+            # Extract the star ratings for a given review and store the
+            # (review, rating) couple in the return dictionnary
+            for review in reviews:
+                # Find the previous <div> tag with the specified attributes
+                div_tag = review.find_previous(
+                    'div',
+                    class_='css-14g69b3',
+                    role='img'
+                )
+
+                star_rating = float(list(div_tag['aria-label'])[0])
+                review_text = review.text.replace(u'\xa0', u' ')
+                review_text = ' '.join(review_text.split())
+
+                restaurant_reviews[name]['reviews'][i] = {
+                    'text': review_text,
+                    'rating': star_rating
+                }
+                i += 1
 
         return restaurant_reviews
 
-    def get_reviews_from_restaurants(
+    def get_reviews_from_list_of_restaurants(
         self,
         restaurants: list[dict],
+        number_of_pages=1,
         store=True
     ) -> list[str]:
         """
@@ -131,9 +195,14 @@ class YelpBot:
         restaurants_reviews = {}
 
         for restaurant in restaurants:
-            reviews = self.get_reviews_from_restaurant(restaurant)
+            reviews = self.get_reviews_from_restaurant(
+                restaurant,
+                number_of_pages
+            )
             restaurants_reviews |= reviews
 
+        # TODO - store each iteration such that if there is a crash, the work
+        # done isn't lost
         if store:
             if not os.path.isdir(self.store_folder):
                 os.makedirs(self.store_folder)
@@ -148,7 +217,11 @@ class YelpBot:
 
         return restaurants_reviews
 
-    def generate_new_review_text(self, restaurant_reviews: dict) -> str:
+    def generate_new_review_text(
+        self,
+        restaurant_reviews: dict,
+        number_of_reviews=None,
+    ) -> str:
         """
         Generate a new review's text with OpenAI's GPT-3.5 model based
         on a list of reviews.
@@ -156,6 +229,9 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for a given restaurant.
+            - number_of_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate the new review. By default,
+            it will take all the reviews into account.
 
         return [str]:
             - the new review's text
@@ -165,8 +241,11 @@ class YelpBot:
         prompt += 'following reviews:\n'
 
         reviews = restaurant_reviews[restaurant_name]['reviews']
-        for review in reviews.values():
-            prompt += f"- {review['text']}\n"
+        if number_of_reviews is None:
+            number_of_reviews = len(reviews.values())
+        for i, review in enumerate(reviews.values()):
+            if i < number_of_reviews:
+                prompt += f"- {review['text']}\n"
 
         prompt += 'Make the new review about a specific dish that was '
         prompt += 'mentionned in the given reviews.\n'
@@ -202,7 +281,11 @@ class YelpBot:
 
         return avg_rating
 
-    def generate_new_review(self, restaurant_reviews: dict) -> dict:
+    def generate_new_review(
+        self,
+        restaurant_reviews: dict,
+        number_of_reviews=None,
+    ) -> dict:
         """
         Generate a new review with OpenAI's GPT-3.5 model based on a list of
         reviews and ratings.
@@ -210,13 +293,19 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for a given restaurant.
+            - number_of_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate the new review. By default,
+            it will take all the reviews into account.
 
         return [dict]:
             - a dictionary containing the name of the restaurant, it's URL,
             a new review text and rating
         """
         restaurant_name = next(iter(restaurant_reviews))
-        new_text = self.generate_new_review_text(restaurant_reviews)
+        new_text = self.generate_new_review_text(
+            restaurant_reviews,
+            number_of_reviews
+        )
         new_rating = self.generate_new_review_rating(restaurant_reviews)
         new_review = {
             restaurant_name:
@@ -229,11 +318,12 @@ class YelpBot:
 
         return new_review
 
-    def generate_new_reviews(
+    def generate_list_of_new_reviews(
         self,
         restaurants_reviews: dict,
-        n_per_restaurant=4,
-        store=False
+        n_input_reviews=None,
+        n_output_reviews=1,
+        store=True
     ) -> dict:
         """
         Generate a list of new reviews with OpenAI's GPT-3.5 model based
@@ -242,8 +332,12 @@ class YelpBot:
         arg:
             - restaurant_reviews [dict]: a dictionary containing a list of 
             reviews for multiple restaurants.
-            - n_per_restaurant [int]: how many new reviews to generate per
-            restaurant.
+            - n_input_reviews [int]: number of reviews to take into account
+            from the restaurant_reviews to generate a new review. By default,
+            it will take all the reviews into account.
+            - n_output_reviews [int]: how many new reviews to generate per
+            restaurant. By default, it will generate one new review per
+            restaurant
             - store [bool]: if true the result of the function will be 
             stored in a json file called new_reviews.json in the working
             directory.
@@ -259,7 +353,10 @@ class YelpBot:
             new_reviews[name]['url'] = reviews['url']
             new_reviews[name]['reviews'] = {}
 
-            for i in range(n_per_restaurant):
+            for i in range(n_output_reviews):
+                if i % 10 == 0 and i > 1:
+                    print(
+                        f"Generating reviews for {name}, number of reviews generated {i}")
                 new_reviews[name]['reviews'][i] = {
                     'text': self.generate_new_review_text({name: reviews}),
                     'rating': self.generate_new_review_rating({name: reviews}) +
@@ -267,6 +364,8 @@ class YelpBot:
                 }
 
         if store:
+            # TODO - store each iteration such that if there is a crash, the work
+            # done isn't lost
             if not os.path.isdir(self.store_folder):
                 os.makedirs(self.store_folder)
 
@@ -279,3 +378,95 @@ class YelpBot:
             )
 
         return new_reviews
+
+    def create_bot(self, headless=True) -> None:
+        options = webdriver.ChromeOptions()
+        ua = UserAgent()
+        user_agent = ua.random
+        if headless:
+            options.add_argument("--headless=new")
+        else:
+            options.add_argument("start-maximized")
+        options.add_argument(f'--user-agent={user_agent}')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
+        options.add_argument("--disable-blink-features")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option(
+            "excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
+        self.driver = webdriver.Chrome(options=options)
+        self.driver.execute_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        )
+
+        print(self.driver.execute_script("return navigator.userAgent;"))
+
+    def open_yelp(self) -> None:
+
+        self.driver.get('https://www.yelp.com/')
+        try:
+            WebDriverWait(self.driver, self.long_sleep_time).until(
+                EC.presence_of_element_located((
+                    By.XPATH,
+                    "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/span[3]/button/span"
+                ))
+            ).click()
+
+        except ElementClickInterceptedException:
+            # TODO - implement excpetion handling
+            pass
+
+        self.email_login()
+
+    def email_login(self) -> None:
+        user_credentials_path = os.path.join(
+            self.user_credentials_folder,
+            'user_credentials.json'
+        )
+
+        with open(user_credentials_path) as f:
+            user_credentials = json.load(f)
+            email = user_credentials['email']
+            password = user_credentials['password']
+
+        # Input user email into email input field
+        inputMail = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div/div[4]/form/div[1]/div/label/input"
+            ))
+        )
+        inputMail.send_keys(email)
+        inputMail.send_keys(Keys.RETURN)
+
+        # Input user password into password input field
+        inputPassword = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div/div[4]/form/div[2]/div/label/input"
+            ))
+        )
+        inputPassword.send_keys(password)
+        inputPassword.send_keys(Keys.RETURN)
+
+    def open_restaurant_page(self, restaurant) -> None:
+        # Input location of restaurant
+        inputLocation = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[3]/div/header/div/div[1]/div[2]/div/div/div/div/form/div[2]/div/input[2]"
+            ))
+        )
+        inputLocation.send_keys(Keys.DELETE)
+        inputLocation.send_keys(self.location)
+
+        inputRestaurant = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.presence_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[2]/div/div/div/div/form/div[1]/div/input[1]"
+            ))
+        )
+        inputRestaurant.click()
+        inputRestaurant.send_keys(restaurant)
+        inputRestaurant.send_keys(Keys.RETURN)

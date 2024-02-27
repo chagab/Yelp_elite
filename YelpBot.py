@@ -409,7 +409,9 @@ class YelpBot:
             WebDriverWait(self.driver, self.long_sleep_time).until(
                 EC.presence_of_element_located((
                     By.XPATH,
-                    "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/div/div[1]/div[3]/nav/div/div[2]/div/span[3]/button/span"
+                    "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/" +
+                    "header/div/div[1]/div[3]/nav/div/div[2]/div/span[3]/" +
+                    "button/span"
                 ))
             ).click()
 
@@ -454,25 +456,6 @@ class YelpBot:
         inputPassword.send_keys(password)
         inputPassword.send_keys(Keys.RETURN)
 
-    def open_restaurant_page(self, restaurant) -> None:
+    def open_restaurant_page(self, restaurant_url: str) -> None:
         # Input location of restaurant
-        inputLocation = WebDriverWait(self.driver, self.long_sleep_time).until(
-            EC.presence_of_element_located((
-                By.XPATH,
-                "/html/body/yelp-react-root/div[1]/div[2]/div[3]/div/header/" +
-                "div/div[1]/div[2]/div/div/div/div/form/div[2]/div/input[2]"
-            ))
-        )
-        inputLocation.send_keys(Keys.DELETE)
-        inputLocation.send_keys(self.location)
-
-        inputRestaurant = WebDriverWait(self.driver, self.long_sleep_time).until(
-            EC.presence_of_element_located((
-                By.XPATH,
-                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/" +
-                "div/div[1]/div[2]/div/div/div/div/form/div[1]/div/input[1]"
-            ))
-        )
-        inputRestaurant.click()
-        inputRestaurant.send_keys(restaurant)
-        inputRestaurant.send_keys(Keys.RETURN)
+        self.driver.get(restaurant_url)

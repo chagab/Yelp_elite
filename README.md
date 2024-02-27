@@ -121,13 +121,17 @@ At this point, you are one click away from completing the attack. This shows tha
 
 # Defense 
 
-As you can see, the text shown above passes all the criterium on Yelp, nothing is checking if the text was written by a human. However, such [tools](https://www.scribbr.com/ai-tools/best-ai-detector/) already exists 
+As you can see, the text shown above passes all the criterium on Yelp, nothing is checking if the text was written by a human. However, [tools](https://www.scribbr.com/ai-detector/) to detect AI generated text already exist
 
 ![image](https://github.com/chagab/Yelp_elite/assets/28218716/0b93d331-6074-4b9f-9e06-177063c40ec4)
 
-and are efficient in detecting AI generated texts, even if the reviews is based on real examples. The idea in the defense phase is to use such an AI-detector whlie the user is writting his reviews in order to avoid such spaming, like so
+and are [efficient](https://www.scribbr.com/ai-tools/best-ai-detector/) in their classification, even if the generated text is based on multiple real examples as you can see above. The idea in the defense phase is to use such an AI-detector while the user is writting his reviews in order to avoid such spaming, like so
 
-![image140-modif](https://github.com/chagab/Yelp_elite/assets/28218716/17987b79-071a-40d0-8062-060fce5a6477)
+![image140-modif](https://github.com/chagab/Yelp_elite/assets/28218716/b28955ed-f122-4c71-9d05-d6624e9b0146)
+
+
+
+
 
 
 

@@ -237,18 +237,24 @@ class YelpBot:
             - the new review's text
         """
         restaurant_name = next(iter(restaurant_reviews))
+
         prompt = f'Generate a new review for {restaurant_name} based on the '
-        prompt += 'following reviews:\n'
+        prompt += 'following review exmaples :\n'
 
         reviews = restaurant_reviews[restaurant_name]['reviews']
+
         if number_of_reviews is None:
             number_of_reviews = len(reviews.values())
+
         for i, review in enumerate(reviews.values()):
             if i < number_of_reviews:
-                prompt += f"- {review['text']}\n"
+                prompt += f"- Example {i}: {review['text']}\n"
 
         prompt += 'Make the new review about a specific dish that was '
-        prompt += 'mentionned in the given reviews.\n'
+        prompt += 'mentionned in the examples. Make a statement about the '
+        prompt += 'ambiance of the place based on the examples. Make a '
+        prompt += 'statement about how the service was based on the examples. '
+        prompt += 'Use a similar writing style as the one in the examples.\n'
         prompt += 'New review:'
 
         messages = [{"role": "user", "content": prompt}]
@@ -387,6 +393,7 @@ class YelpBot:
             options.add_argument("--headless=new")
         else:
             options.add_argument("start-maximized")
+        options.add_argument("--disable-notifications")
         options.add_argument(f'--user-agent={user_agent}')
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
@@ -402,16 +409,16 @@ class YelpBot:
 
         print(self.driver.execute_script("return navigator.userAgent;"))
 
-    def open_yelp(self) -> None:
+    def open_yelp(self, restaurant_url) -> None:
 
-        self.driver.get('https://www.yelp.com/')
+        self.driver.get(restaurant_url)
         try:
+            # click on the login buttom
             WebDriverWait(self.driver, self.long_sleep_time).until(
                 EC.presence_of_element_located((
                     By.XPATH,
-                    "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/" +
-                    "header/div/div[1]/div[3]/nav/div/div[2]/div/span[3]/" +
-                    "button/span"
+                    "/html/body/yelp-react-root/div[1]/div[3]/header/div/" +
+                    "div[1]/div[3]/nav/div/div[2]/div/span[3]/button/span"
                 ))
             ).click()
 
@@ -436,9 +443,9 @@ class YelpBot:
         inputMail = WebDriverWait(self.driver, self.long_sleep_time).until(
             EC.presence_of_element_located((
                 By.XPATH,
-                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/" +
-                "div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/" +
-                "div[2]/div/div/div[4]/form/div[1]/div/label/input"
+                "/html/body/yelp-react-root/div[1]/div[3]/header/div/div[1]" +
+                "/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div" +
+                "/div[4]/form/div[1]/div/label/input"
             ))
         )
         inputMail.send_keys(email)
@@ -448,14 +455,46 @@ class YelpBot:
         inputPassword = WebDriverWait(self.driver, self.long_sleep_time).until(
             EC.presence_of_element_located((
                 By.XPATH,
-                "/html/body/yelp-react-root/div[1]/div[2]/div[2]/div/header/" +
-                "div/div[1]/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]" +
-                "/div/div/div[4]/form/div[2]/div/label/input"
+                "/html/body/yelp-react-root/div[1]/div[3]/header/div/div[1]" +
+                "/div[3]/nav/div/div[2]/div/div/div/div/div/div[2]/div/div" +
+                "/div[4]/form/div[2]/div/label/input"
             ))
         )
         inputPassword.send_keys(password)
         inputPassword.send_keys(Keys.RETURN)
 
-    def open_restaurant_page(self, restaurant_url: str) -> None:
-        # Input location of restaurant
-        self.driver.get(restaurant_url)
+    def open_write_review(self):
+        review_button = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.element_to_be_clickable((
+                By.XPATH,
+                "/html/body/yelp-react-root/div[1]/div[6]/div/div[1]/div[1]" +
+                "/main/div[1]/div[1]/a"
+            ))
+        )
+        href = review_button.get_attribute('href')
+        self.driver.get(href)
+
+    def post_review(self, new_review):
+
+        # Post the text
+        name = next(iter(new_review))
+        self.driver.implicitly_wait(20)
+        inputText = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.visibility_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div/div/div[2]/div/div/main/div" +
+                "/div[2]/form/div[1]/div[1]/div[3]/div/p"
+            ))
+        )
+        inputText.send_keys(new_review[name]['text'])
+
+        # Post the rating
+        ratingButton = WebDriverWait(self.driver, self.long_sleep_time).until(
+            EC.visibility_of_element_located((
+                By.XPATH,
+                "/html/body/yelp-react-root/div/div/div[2]/div/div/main/div" +
+                "/div[2]/form/div[1]/div[1]/div[1]/div[1]/fieldset/ul" +
+                f"/li[{new_review[name]['rating']}]/div[1]/input"
+            ))
+        )
+        ratingButton.click()
